@@ -27,8 +27,8 @@ contract FixedPrice is Ownable, ERC721Holder
     mapping(address => bool) public accepted_nfts;
     mapping(address => bool) public accepted_tokens;
     
-    event Created(uint _item_id, address _nft_address, uint _token_id, address _owner, address _erc20_address, uint _price);
-    event Sold(uint _item_id, address _buyer, address _erc20_address, uint _price);
+    event Created(uint _item_id, address _nft_address, uint _token_id, address _owner, address _erc20_address, uint _price, uint _commission_rate);
+    event Sold(uint _item_id, address _buyer);
     event Deleted(uint _item_id);
     event CommissionRateChanged(uint _commission_rate);
     
@@ -45,7 +45,7 @@ contract FixedPrice is Ownable, ERC721Holder
         id_to_index[next_id] = items.length + 1;
         items.push(Item(erc721_address, token_id, _msgSender(), address(0), price, commission_rate_promille, next_id));
         erc721_smc.safeTransferFrom(_msgSender(), address(this), token_id);
-        emit Created(next_id, erc721_address, token_id, _msgSender(), address(0), price);
+        emit Created(next_id, erc721_address, token_id, _msgSender(), address(0), price, commission_rate_promille);
         next_id = next_id + 1;
     }
 
@@ -58,7 +58,7 @@ contract FixedPrice is Ownable, ERC721Holder
         id_to_index[next_id] = items.length + 1;
         items.push(Item(erc721_address, token_id, _msgSender(), erc20_address, price, commission_rate_promille, next_id));
         erc721_smc.safeTransferFrom(_msgSender(), address(this), token_id);
-        emit Created(next_id, erc721_address, token_id, _msgSender(), erc20_address, price);
+        emit Created(next_id, erc721_address, token_id, _msgSender(), erc20_address, price, commission_rate_promille);
         next_id = next_id + 1;
     }
 
@@ -85,7 +85,7 @@ contract FixedPrice is Ownable, ERC721Holder
         payable(items[item_index].owner).transfer(items[item_index].price - fee);
         IERC721 erc721_smc = IERC721(items[item_index].erc721_address);
         erc721_smc.safeTransferFrom(address(this), _msgSender(), items[item_index].token_id);
-        emit Sold(item_id, _msgSender(), address(0), items[item_index].price);
+        emit Sold(item_id, _msgSender());
         _removeItem(item_id, item_index);          
     }
 
@@ -102,7 +102,7 @@ contract FixedPrice is Ownable, ERC721Holder
         token.safeTransferFrom(_msgSender(), items[item_index].owner, items[item_index].price - fee);
         IERC721 erc721_smc = IERC721(items[item_index].erc721_address);
         erc721_smc.safeTransferFrom(address(this), _msgSender(), items[item_index].token_id);
-        emit Sold(item_id, _msgSender(), items[item_index].erc20_address, items[item_index].price);
+        emit Sold(item_id, _msgSender());
         _removeItem(item_id, item_index);          
     }
       

@@ -61,6 +61,12 @@
 						"internalType": "uint256",
 						"name": "_price",
 						"type": "uint256"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "_commission_rate",
+						"type": "uint256"
 					}
 				],
 				"name": "Created",
@@ -112,18 +118,6 @@
 						"internalType": "address",
 						"name": "_buyer",
 						"type": "address"
-					},
-					{
-						"indexed": false,
-						"internalType": "address",
-						"name": "_erc20_address",
-						"type": "address"
-					},
-					{
-						"indexed": false,
-						"internalType": "uint256",
-						"name": "_price",
-						"type": "uint256"
 					}
 				],
 				"name": "Sold",
@@ -591,11 +585,11 @@
 			]
 		},
 		"contracts/FixedPrice.sol": {
-			"keccak256": "0x3a25421a4ff1bc4cb766e3d1b66efd6fb6828b124e729692bd3e303375f72880",
+			"keccak256": "0xf7c48fbd95a6a54343c9c744e6d73732e491fb913c87df4cb182517d88550295",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://ff3f56d52f37ebf59cc84ce73cd0db459b48fc5f0d1ba486b83beabf601a7859",
-				"dweb:/ipfs/QmP3QcN5XVzWikdjr9337KPcXZUVfAz7tnCiQSNuF5ghcD"
+				"bzz-raw://f95dfdd118d529770b5b870a408754e4a9a235e381b9eb753014512f665a9811",
+				"dweb:/ipfs/QmU35t3eKtVLZCsuTVzdfUfUGNWJAhtENJmUtQ4t9STh4o"
 			]
 		}
 	},
