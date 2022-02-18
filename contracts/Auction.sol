@@ -24,25 +24,25 @@ contract Auction is Ownable, ERC721Holder
         address last_bidder;
         uint commission_rate;      
         uint item_id;     
-    } 
+    }
+    
     uint constant public extend_time = 5 minutes;
     
     Item[] private items;
     mapping(uint => uint) private id_to_index;
-    uint public	next_id = 1;
+    uint public next_id = 1;
     uint public commission_rate_promille = 20;
     mapping(address => bool) public accepted_nfts;
     mapping(address => bool) public accepted_tokens;
     
     event Created(uint _item_id, uint _start_epoch, uint _end_epoch, address _nft_address, uint _token_id, address _owner, address _erc20_address, uint _min_price, uint _price_step, uint _commission_rate);
     event Bid(uint _item_id, uint _end_epoch, address _bidder, uint _last_price);
-    event NFTClaimed(uint _item_id);
-    event FundsClaimed(uint _item_id);
+    event Finished(uint _item_id);
     event CommissionRateChanged(uint _commission_rate);
     
     constructor() 
     { 
-//        accepted_tokens[0xd9145CCE52D386f254917e481eB44e9943F39138] = true;
+
     }
     
     function sellNFTForETH(uint start_epoch, uint end_epoch, address erc721_address, uint token_id, uint min_price, uint price_step) public
@@ -81,7 +81,8 @@ contract Auction is Ownable, ERC721Holder
         require(items[item_index].start_epoch <= block.timestamp && block.timestamp <= items[item_index].end_epoch, "auction is not active");
         require(items[item_index].last_bidder != _msgSender(), "you are the highest bidder");
         require(msg.value >= items[item_index].min_price && msg.value >= items[item_index].last_price + items[item_index].price_step, "bid is too low");
-        payable(items[item_index].last_bidder).transfer(items[item_index].last_price);
+        if(items[item_index].last_price > 0)
+            payable(items[item_index].last_bidder).transfer(items[item_index].last_price);
         items[item_index].last_price = msg.value;
         items[item_index].last_bidder = _msgSender();
         if(block.timestamp + extend_time > items[item_index].end_epoch)
@@ -102,7 +103,8 @@ contract Auction is Ownable, ERC721Holder
         require(amount >= items[item_index].min_price && amount >= items[item_index].last_price + items[item_index].price_step, "bid is too low");
         IERC20 token = IERC20(items[item_index].erc20_address);
         token.safeTransferFrom(_msgSender(), address(this), amount);
-        token.transfer(items[item_index].last_bidder, items[item_index].last_price);
+        if(items[item_index].last_price > 0)
+            token.transfer(items[item_index].last_bidder, items[item_index].last_price);
         items[item_index].last_price = amount;
         items[item_index].last_bidder = _msgSender();
         if(block.timestamp + extend_time > items[item_index].end_epoch)
@@ -111,57 +113,30 @@ contract Auction is Ownable, ERC721Holder
         }
         emit Bid(item_id, items[item_index].end_epoch, items[item_index].last_bidder, items[item_index].last_price);
     }
-    
-    function claimNFT(uint item_id) public
-    {
-        uint item_index = id_to_index[item_id];
-        require(item_index > 0, "nonexistent item");
-        item_index = item_index - 1;
-        require(block.timestamp > items[item_index].end_epoch, "auction is still ongoing");
-        require(items[item_index].last_bidder == _msgSender(), "you are not the winner");
-        IERC721 erc721_smc = IERC721(items[item_index].erc721_address);
-        erc721_smc.safeTransferFrom(address(this), items[item_index].last_bidder, items[item_index].token_id);
-        items[item_index].last_bidder = address(0);
-        emit NFTClaimed(item_id);
-        if(items[item_index].owner == address(0) || items[item_index].last_price == 0)
-            _removeItem(item_id, item_index);
-    }
-    
-    function claimETH(uint item_id) public
-    {
-        uint item_index = id_to_index[item_id];
-        require(item_index > 0, "nonexistent item");
-        item_index = item_index - 1;
-        require(items[item_index].erc20_address == address(0), "use claimTokens function");
-        require(block.timestamp > items[item_index].end_epoch, "auction is still ongoing");
-        require(items[item_index].owner == _msgSender(), "you are not the owner");
-        uint fee = (items[item_index].last_price*items[item_index].commission_rate)/1000;
-        payable(owner()).transfer(fee);
-        payable(items[item_index].owner).transfer(items[item_index].last_price - fee);
-        items[item_index].owner = address(0);
-        emit FundsClaimed(item_id);
-        if(items[item_index].last_bidder == address(0))
-            _removeItem(item_id, item_index);
-    }
 
-    function claimTokens(uint item_id) public
+    function exchange(uint item_id) public
     {
         uint item_index = id_to_index[item_id];
         require(item_index > 0, "nonexistent item");
         item_index = item_index - 1;
-        require(items[item_index].erc20_address != address(0), "use claimETH function");
         require(block.timestamp > items[item_index].end_epoch, "auction is still ongoing");
-        require(items[item_index].owner == _msgSender(), "you are not the owner");
+        IERC721(items[item_index].erc721_address).safeTransferFrom(address(this), items[item_index].last_bidder, items[item_index].token_id);
         uint fee = (items[item_index].last_price*items[item_index].commission_rate)/1000;
-        IERC20 token = IERC20(items[item_index].erc20_address);
-        token.transfer(owner(), fee);
-        token.transfer(items[item_index].owner, items[item_index].last_price - fee);
-        items[item_index].owner = address(0);
-        emit FundsClaimed(item_id);
-        if(items[item_index].last_bidder == address(0))
-            _removeItem(item_id, item_index);
+        if(items[item_index].erc20_address == address(0))
+        {
+            payable(owner()).transfer(fee);
+            payable(items[item_index].owner).transfer(items[item_index].last_price - fee);
+        }
+        else
+        {
+            IERC20 token = IERC20(items[item_index].erc20_address);
+            token.transfer(owner(), fee);
+            token.transfer(items[item_index].owner, items[item_index].last_price - fee);
+        }
+        emit Finished(item_id);
+        _removeItem(item_id, item_index);
     }
-
+    
     function getItem(uint item_id) view public returns(Item memory)
     {
         uint item_index = id_to_index[item_id];
@@ -216,5 +191,5 @@ contract Auction is Ownable, ERC721Holder
     {
         super.renounceOwnership();
         setCommission(0);
-    }  
+    }
 }

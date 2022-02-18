@@ -131,20 +131,7 @@
 						"type": "uint256"
 					}
 				],
-				"name": "FundsClaimed",
-				"type": "event"
-			},
-			{
-				"anonymous": false,
-				"inputs": [
-					{
-						"indexed": false,
-						"internalType": "uint256",
-						"name": "_item_id",
-						"type": "uint256"
-					}
-				],
-				"name": "NFTClaimed",
+				"name": "Finished",
 				"type": "event"
 			},
 			{
@@ -231,45 +218,6 @@
 				"type": "function"
 			},
 			{
-				"inputs": [
-					{
-						"internalType": "uint256",
-						"name": "item_id",
-						"type": "uint256"
-					}
-				],
-				"name": "claimETH",
-				"outputs": [],
-				"stateMutability": "nonpayable",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "uint256",
-						"name": "item_id",
-						"type": "uint256"
-					}
-				],
-				"name": "claimNFT",
-				"outputs": [],
-				"stateMutability": "nonpayable",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "uint256",
-						"name": "item_id",
-						"type": "uint256"
-					}
-				],
-				"name": "claimTokens",
-				"outputs": [],
-				"stateMutability": "nonpayable",
-				"type": "function"
-			},
-			{
 				"inputs": [],
 				"name": "commission_rate_promille",
 				"outputs": [
@@ -280,6 +228,19 @@
 					}
 				],
 				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "item_id",
+						"type": "uint256"
+					}
+				],
+				"name": "exchange",
+				"outputs": [],
+				"stateMutability": "nonpayable",
 				"type": "function"
 			},
 			{
@@ -740,11 +701,11 @@
 			]
 		},
 		"contracts/Auction.sol": {
-			"keccak256": "0xdc8f82b2a93701b2830471c54b408aea14970b273b769c0f8068552fa213ee1e",
+			"keccak256": "0x8c4304ba747520808489071eed0c6b3d8bd32ac88697bf4f906189c622f6a71a",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://d16c5b70116fb4020291bc2089e47cc6ebff3e335488e7465043959c12f2b4d1",
-				"dweb:/ipfs/QmfXCPdMKchKZfkU3qPyFqufxXCZXrGhSgkFKBui5fe8qD"
+				"bzz-raw://4b82dada84d1109e023800cb25bf265b68a5ebb34ac1ebe1dbbc01f088d807a3",
+				"dweb:/ipfs/Qmez6Z3QuZ6xEXqacpqZmmgJxop2RmJgXuDjuM2RJs26bc"
 			]
 		}
 	},
