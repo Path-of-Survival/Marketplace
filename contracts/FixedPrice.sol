@@ -68,6 +68,7 @@ contract FixedPrice is Ownable, ERC721Holder
         require(item_index > 0, "nonexistent item");
         item_index = item_index - 1;
         require(items[item_index].owner == _msgSender(), "you are not the owner");
+        IERC721(items[item_index].erc721_address).safeTransferFrom(address(this), items[item_index].owner, items[item_index].token_id);
         _removeItem(item_id, item_index);
         emit Deleted(item_id);
     }
