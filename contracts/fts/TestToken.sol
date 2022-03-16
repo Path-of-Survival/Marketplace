@@ -7,6 +7,10 @@ contract TestToken is ERC20
 {
     constructor() ERC20("TestToken", "TTT")
     {
-        _mint(_msgSender(), 10000000000);
+        _mint(_msgSender(), 1000000*10**9);
+    }
+	
+    function decimals() public view virtual override returns (uint8) {
+        return 9;
     }
 }
