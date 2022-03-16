@@ -11,13 +11,11 @@ contract PoSNFT is ERC721, EIP712, Ownable, IPoSNFT
     uint constant public FIRST_GAME_TOKEN_ID = 1000000;
     uint public next_token_id = 1;
     mapping (address => bool) public admins;
-    bytes32 constant private MINT_TYPE_HASH = 0x4be54700c1c588568e41c1f2f24fd476dee9ec8f1e71f088d4a8e24bda925241; 
+    bytes32 constant private MINT_TYPE_HASH = 0xb6b8501c5eb401a2c658dc6afbd8fc71e530ead458be2ac3f5f322d24727da99; 
     mapping(uint => bool) private withdraw_ids;
 
-    constructor() ERC721("PoSNFT", "PNFT") EIP712("PoSNFT", "1.0", 0x58af7b5043c35f089c99b49c810a9708a9e3adf6e16f94503cad160c62c64408)
-    {
-        admins[_msgSender()] = true;
-    }
+    constructor(bytes32 salt) ERC721("PoSNFT", "PNFT") EIP712("PoSNFT", "1.0", salt)
+    { }
 
     function mintByAdmin(address to, uint quantity) public override
     {
@@ -36,6 +34,7 @@ contract PoSNFT is ERC721, EIP712, Ownable, IPoSNFT
 
     function mintWithHash(uint tokenId, uint withdrawId, bytes memory signature) external override
     {
+        require(tokenId >= FIRST_GAME_TOKEN_ID, "invalid tokenId");
         require(withdraw_ids[withdrawId] == false && admins[EIP712.verify(generateMintHash(_msgSender(), tokenId, withdrawId), signature)] == true, "invalid signature");
         _mint(_msgSender(), tokenId);
         withdraw_ids[withdrawId] = true;
