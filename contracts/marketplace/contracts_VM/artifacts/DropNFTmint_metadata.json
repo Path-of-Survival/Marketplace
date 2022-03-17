@@ -1,6 +1,6 @@
 {
 	"compiler": {
-		"version": "0.8.12+commit.f00d7308"
+		"version": "0.8.13+commit.abaa5c0e"
 	},
 	"language": "Solidity",
 	"output": {
@@ -150,44 +150,6 @@
 			{
 				"inputs": [
 					{
-						"internalType": "uint256",
-						"name": "",
-						"type": "uint256"
-					}
-				],
-				"name": "end_epoch",
-				"outputs": [
-					{
-						"internalType": "uint256",
-						"name": "",
-						"type": "uint256"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "uint256",
-						"name": "stage",
-						"type": "uint256"
-					}
-				],
-				"name": "getSupply",
-				"outputs": [
-					{
-						"internalType": "uint256",
-						"name": "",
-						"type": "uint256"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
 						"internalType": "address",
 						"name": "_posnft_address",
 						"type": "address"
@@ -237,27 +199,14 @@
 				"type": "function"
 			},
 			{
-				"inputs": [],
-				"name": "posnft_address",
-				"outputs": [
+				"inputs": [
 					{
 						"internalType": "address",
-						"name": "",
+						"name": "buyer",
 						"type": "address"
 					}
 				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "uint256",
-						"name": "",
-						"type": "uint256"
-					}
-				],
-				"name": "price",
+				"name": "purchaseQuantityLimit",
 				"outputs": [
 					{
 						"internalType": "uint256",
@@ -270,7 +219,7 @@
 			},
 			{
 				"inputs": [],
-				"name": "quantity_limit",
+				"name": "remainingSupply",
 				"outputs": [
 					{
 						"internalType": "uint256",
@@ -304,25 +253,6 @@
 			{
 				"inputs": [
 					{
-						"internalType": "address",
-						"name": "",
-						"type": "address"
-					}
-				],
-				"name": "sales_counter",
-				"outputs": [
-					{
-						"internalType": "uint256",
-						"name": "",
-						"type": "uint256"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
 						"internalType": "uint256",
 						"name": "epoch",
 						"type": "uint256"
@@ -331,25 +261,6 @@
 				"name": "setCurrEpoch",
 				"outputs": [],
 				"stateMutability": "nonpayable",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "uint256",
-						"name": "",
-						"type": "uint256"
-					}
-				],
-				"name": "supply",
-				"outputs": [
-					{
-						"internalType": "uint256",
-						"name": "",
-						"type": "uint256"
-					}
-				],
-				"stateMutability": "view",
 				"type": "function"
 			},
 			{
@@ -500,11 +411,11 @@
 			]
 		},
 		"contracts/marketplace/contracts_VM/DropNFTmint_VM.sol": {
-			"keccak256": "0xad792b041344c1ff6322dbeadf0fb33b07d206d5111e1f8caeabaec095adfae7",
+			"keccak256": "0x7a977b4c18d8cb3cb85a774b2ac897942b14d9d677e8a2941c3fbc4948c4129f",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://8d0f6f651618d4aaaf178c10d318d7a5505081386d4ebc151822212875c6c38d",
-				"dweb:/ipfs/QmRX8L43tJSCBxwKqysryVsGL4M94AwF1Pay3dsvMqynBX"
+				"bzz-raw://d5bec0779283a40e8ff3ae70f867db22b28bf70835c735ca0bf9796e4faf8f13",
+				"dweb:/ipfs/QmNhm5nFrqRHvNQ4xfwFGUe8a3GrBVugqCjYHsm3PqXrpu"
 			]
 		},
 		"contracts/nfts/IPoSNFT.sol": {

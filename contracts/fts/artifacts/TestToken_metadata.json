@@ -1,6 +1,6 @@
 {
 	"compiler": {
-		"version": "0.8.12+commit.f00d7308"
+		"version": "0.8.13+commit.abaa5c0e"
 	},
 	"language": "Solidity",
 	"output": {
@@ -375,11 +375,11 @@
 			]
 		},
 		"contracts/fts/TestToken.sol": {
-			"keccak256": "0xadb506d0b7505dde3252806bdc5c62bdf4e44d98e203a31e35cafd932caa432e",
+			"keccak256": "0xd1801ac2c4924c8f276f2ac06e519930b75d2a9d628a08bae07985317471cc14",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://051362b65da019f48d02791cbeeee5df94b489c34e7c1b0843a601c62d68d1ef",
-				"dweb:/ipfs/QmS5AWmdXRFx15LfgGEKy5rvLYbG6YYtxknount23ryLw1"
+				"bzz-raw://179c37e8e3ec6988198987fbe37c7ca509c49130a57e311576c33eaa537693a3",
+				"dweb:/ipfs/QmSQrvwyHSASBVtNpZX3S7wNXwgziK6Axbkfktmmn45cDf"
 			]
 		}
 	},

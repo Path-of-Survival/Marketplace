@@ -15,15 +15,15 @@ contract DropNFTmint is Ownable, EIP712
     using SafeERC20 for IERC20;
 
     mapping (address => bool) public admins;
-    mapping (address => uint) public sales_counter;
-    bytes32 constant private BUY_POSNFT_TYPE_HASH = 0xa8d1a88a06141ebe0d1a62d28bf4afc58b965a89994e6a9ac38392c342f4cf9c;
+    mapping (address => uint) sales_counter;
+    bytes32 constant BUY_POSNFT_TYPE_HASH = 0xa8d1a88a06141ebe0d1a62d28bf4afc58b965a89994e6a9ac38392c342f4cf9c;
 
-    address public posnft_address;
-    uint public quantity_limit;
-    uint[] public supply;
+    address posnft_address;
+    uint quantity_limit;
+    uint[] supply;
     address erc20_address;
-    uint[] public price;
-    uint[] public end_epoch;
+    uint[] price;
+    uint[] end_epoch;
 
     event Initialized(address _posnft_address, uint _quantity_limit, uint[] _supply, address _erc20_address, uint[] _price, uint[] _end_epoch);
     event Sold(address _buyer, uint _quantity);
@@ -71,7 +71,20 @@ contract DropNFTmint is Ownable, EIP712
         emit Sold(_msgSender(), quantity);
     }
 
-    function getSupply(uint stage) public view returns(uint)
+    function purchaseQuantityLimit(address buyer) public view returns(uint)
+    {
+        uint rem_supply = remainingSupply();
+        uint rem_buyer_limit = quantity_limit - sales_counter[buyer];
+        return rem_buyer_limit <= rem_supply ? rem_buyer_limit : rem_supply;
+    }
+
+    function remainingSupply() public view returns(uint)
+    {
+        uint stage = Arrays.findUpperBound(end_epoch, curr_epoch);
+        return getSupply(stage);
+    }
+
+    function getSupply(uint stage) private view returns(uint)
     {
         if(stage >= supply.length)
             return 0;
