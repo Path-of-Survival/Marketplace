@@ -2,20 +2,22 @@
 pragma solidity ^0.8.0;
 
 import "@openzeppelin/contracts/access/Ownable.sol";
-import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
+import "@openzeppelin/contracts/token/ERC721/extensions/ERC721Enumerable.sol";
 import "../cryptography/EIP712.sol";
 import "./IPoSNFT.sol";
 
-contract PoSNFT is ERC721, EIP712, Ownable, IPoSNFT
+contract PoSNFT is ERC721Enumerable, EIP712, Ownable, IPoSNFT
 {
-    uint constant public FIRST_GAME_TOKEN_ID = 1000000;
+    uint immutable public FIRST_GAME_TOKEN_ID;
     uint public next_token_id = 1;
     mapping (address => bool) public admins;
     bytes32 constant private MINT_TYPE_HASH = 0xb6b8501c5eb401a2c658dc6afbd8fc71e530ead458be2ac3f5f322d24727da99; 
     mapping(uint => bool) private withdraw_ids;
 
-    constructor(bytes32 salt) ERC721("PoSNFT", "PNFT") EIP712("PoSNFT", "1.0", salt)
-    { }
+    constructor(string memory name, string memory symbol, string memory version, bytes32 salt, uint fist_game_token_id) ERC721(name, symbol) EIP712(name, version, salt)
+    {
+        FIRST_GAME_TOKEN_ID = fist_game_token_id;
+    }
 
     function mintByAdmin(address to, uint quantity) public override
     {

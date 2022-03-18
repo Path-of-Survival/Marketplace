@@ -1,6 +1,6 @@
 {
 	"compiler": {
-		"version": "0.8.12+commit.f00d7308"
+		"version": "0.8.13+commit.abaa5c0e"
 	},
 	"language": "Solidity",
 	"output": {
@@ -64,6 +64,50 @@
 				"anonymous": false,
 				"inputs": [
 					{
+						"indexed": false,
+						"internalType": "address",
+						"name": "_to",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "tokenId",
+						"type": "uint256"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "_withdrawId",
+						"type": "uint256"
+					}
+				],
+				"name": "NFTWithdrawn",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "previousOwner",
+						"type": "address"
+					},
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "newOwner",
+						"type": "address"
+					}
+				],
+				"name": "OwnershipTransferred",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
 						"indexed": true,
 						"internalType": "address",
 						"name": "from",
@@ -86,13 +130,58 @@
 				"type": "event"
 			},
 			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "_withdrawId",
+						"type": "uint256"
+					}
+				],
+				"name": "WithdrawRequestCancelled",
+				"type": "event"
+			},
+			{
 				"inputs": [],
-				"name": "MAX_SUPPLY",
+				"name": "FIRST_GAME_TOKEN_ID",
 				"outputs": [
 					{
 						"internalType": "uint256",
 						"name": "",
 						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "admin",
+						"type": "address"
+					}
+				],
+				"name": "addAdmin",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"name": "admins",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
 					}
 				],
 				"stateMutability": "view",
@@ -154,6 +243,42 @@
 						"internalType": "uint256",
 						"name": "tokenId",
 						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "withdrawId",
+						"type": "uint256"
+					},
+					{
+						"internalType": "bytes",
+						"name": "signature",
+						"type": "bytes"
+					}
+				],
+				"name": "cancelMintHash",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "fist_game_token_id",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "tokenId",
+						"type": "uint256"
 					}
 				],
 				"name": "getApproved",
@@ -192,8 +317,55 @@
 				"type": "function"
 			},
 			{
-				"inputs": [],
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "tokenId",
+						"type": "uint256"
+					}
+				],
 				"name": "mint",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "to",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "quantity",
+						"type": "uint256"
+					}
+				],
+				"name": "mintByAdmin",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "tokenId",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "withdrawId",
+						"type": "uint256"
+					},
+					{
+						"internalType": "bytes",
+						"name": "signature",
+						"type": "bytes"
+					}
+				],
+				"name": "mintWithHash",
 				"outputs": [],
 				"stateMutability": "nonpayable",
 				"type": "function"
@@ -206,6 +378,32 @@
 						"internalType": "string",
 						"name": "",
 						"type": "string"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "next_token_id",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "owner",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
 					}
 				],
 				"stateMutability": "view",
@@ -228,6 +426,26 @@
 					}
 				],
 				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "admin",
+						"type": "address"
+					}
+				],
+				"name": "removeAdmin",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "renounceOwnership",
+				"outputs": [],
+				"stateMutability": "nonpayable",
 				"type": "function"
 			},
 			{
@@ -441,6 +659,19 @@
 				"outputs": [],
 				"stateMutability": "nonpayable",
 				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "newOwner",
+						"type": "address"
+					}
+				],
+				"name": "transferOwnership",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
 			}
 		],
 		"devdoc": {
@@ -461,8 +692,14 @@
 				"name()": {
 					"details": "See {IERC721Metadata-name}."
 				},
+				"owner()": {
+					"details": "Returns the address of the current owner."
+				},
 				"ownerOf(uint256)": {
 					"details": "See {IERC721-ownerOf}."
+				},
+				"renounceOwnership()": {
+					"details": "Leaves the contract without owner. It will not be possible to call `onlyOwner` functions anymore. Can only be called by the current owner. NOTE: Renouncing ownership will leave the contract without an owner, thereby removing any functionality that is only available to the owner."
 				},
 				"safeTransferFrom(address,address,uint256)": {
 					"details": "See {IERC721-safeTransferFrom}."
@@ -493,6 +730,9 @@
 				},
 				"transferFrom(address,address,uint256)": {
 					"details": "See {IERC721-transferFrom}."
+				},
+				"transferOwnership(address)": {
+					"details": "Transfers ownership of the contract to a new account (`newOwner`). Can only be called by the current owner."
 				}
 			},
 			"version": 1
@@ -599,6 +839,14 @@
 				"dweb:/ipfs/QmWFbivarEobbqhS1go64ootVuHfVohBseerYy9FTEd1W2"
 			]
 		},
+		"@openzeppelin/contracts/utils/cryptography/ECDSA.sol": {
+			"keccak256": "0x3c07f43e60e099b3b157243b3152722e73b80eeb7985c2cd73712828d7f7da29",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://466ffb5a6e3bd65fffd996f9287ffd240ea21588a338c6efe143d94eaed014a7",
+				"dweb:/ipfs/Qmans3vvPJZcvxe9KLAPc9Xwe4TFVTJdzaQGpi62Vrhoe2"
+			]
+		},
 		"@openzeppelin/contracts/utils/introspection/ERC165.sol": {
 			"keccak256": "0xd10975de010d89fd1c78dc5e8a9a7e7f496198085c151648f20cba166b32582b",
 			"license": "MIT",
@@ -615,12 +863,36 @@
 				"dweb:/ipfs/QmP7C3CHdY9urF4dEMb9wmsp1wMxHF6nhA2yQE5SKiPAdy"
 			]
 		},
-		"contracts/nfts/TestNFT.sol": {
-			"keccak256": "0x651b986188540a089640aa4010b9bcb2196e8a6797128fb2d8ac0da39763bd88",
+		"contracts/cryptography/EIP712.sol": {
+			"keccak256": "0xb4d7d678ca71c0cfdeb09d32f3a49ad5cd87973391235e5e820f94e83b63df3f",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://6a27ddb4c0b44332a61cb150fb43683eb497a3dfe6b2eb804d54fb443195cbba",
-				"dweb:/ipfs/QmfLv3Rwgm6BNJxzkkuPPzpeCvncJP2sRp9xFPwQLnrCsv"
+				"bzz-raw://36b9c78c95fddd026cd3eb0f4f123ee40f9f9e2a6ac84dc4b13ca0927ba391db",
+				"dweb:/ipfs/QmdykcuGusuwqthVzZ2RdiGRf3GWvinP5ErrWC3qAJK9re"
+			]
+		},
+		"contracts/nfts/IPoSNFT.sol": {
+			"keccak256": "0x2ff48feadcfbdb5b03eedd40abd8b0fa472a398e0bde4181450289019f101132",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://923da283327dc40a93b3437f66898db71b441bea6fcf414b8a0c8a49345bc0ac",
+				"dweb:/ipfs/QmSFLK4yJAEobPRJcAE59TCydFpDqNXow9KYwsUbrPh2Y8"
+			]
+		},
+		"contracts/nfts/PoSNFT.sol": {
+			"keccak256": "0xddb620f133a34a100d15dcb2c1544e2a6a001b3979f4ce5db58a5d8c756fe385",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://fae930b2799695b17f48bdb256b61d763e0d809117fafca4d213e27fb0043567",
+				"dweb:/ipfs/QmUvLPqozjgPAD8AwwjbyYZv1TiVmvahJLuKJ9Q43HdqFs"
+			]
+		},
+		"contracts/nfts/TestNFT.sol": {
+			"keccak256": "0x4b2693f549fd2e3430c00cd0848c0cff2725ba840efa776890950e5dcf43c6f6",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://fe581fe861fcffa56625fb68af41acbb09b2044ab47c09f8f15a1422901855b4",
+				"dweb:/ipfs/QmP5wcHZbw4sbN4cNihKkrKCh7jbWCdcgxT9ivhHqiCy6b"
 			]
 		}
 	},
