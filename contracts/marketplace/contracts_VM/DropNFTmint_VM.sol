@@ -30,7 +30,7 @@ contract DropNFTmint is Ownable, EIP712
 
     uint curr_epoch = 1; // block.timestamp 
 
-    constructor(bytes32 salt) EIP712("DropNFT", "1.0", salt)
+    constructor(bytes32 salt) EIP712("DropNFTmint", "1.0", salt)
     { }
     
     function initialize(address _posnft_address, uint _quantity_limit, uint[] calldata _supply, address _erc20_address, uint[] calldata _price, uint[] calldata _end_epoch) external onlyOwner

@@ -28,7 +28,7 @@ contract DropNFTmint is Ownable, EIP712
     event Initialized(address _posnft_address, uint _quantity_limit, uint[] _supply, address _erc20_address, uint[] _price, uint[] _end_epoch);
     event Sold(address _buyer, uint _quantity);
 
-    constructor(bytes32 salt) EIP712("DropNFT", "1.0", salt)
+    constructor(bytes32 salt) EIP712("DropNFTmint", "1.0", salt)
     { }
     
     function initialize(address _posnft_address, uint _quantity_limit, uint[] calldata _supply, address _erc20_address, uint[] calldata _price, uint[] calldata _end_epoch) external onlyOwner

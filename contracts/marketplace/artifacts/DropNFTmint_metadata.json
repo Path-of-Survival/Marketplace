@@ -398,11 +398,11 @@
 			]
 		},
 		"contracts/marketplace/DropNFTmint.sol": {
-			"keccak256": "0xf0279913b5dc832479a469e9d83ae15ec1df885cac1cbb42958d2152dacd2250",
+			"keccak256": "0x9152dd976ef3c1862b7c8d377c182dcdcee23af808f27dc9e33f93da3a52d1f0",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://2891665e4e213c17023c32756beb039697e5fd0f0633285b55e15795feddbe0b",
-				"dweb:/ipfs/QmWhJtyx6pFmXuJZbWf5yT41hb79vUDiABhutT4NRRiGVg"
+				"bzz-raw://beb403fa33b8592bf1dca0ad9cfba9a57f774fb158ac1b872eefffc5b25e9b6b",
+				"dweb:/ipfs/QmdYVEn34kZcuycqpFTMp7iYBcsCrYQmU9FcXjYybzZfAh"
 			]
 		},
 		"contracts/nfts/IPoSNFT.sol": {

@@ -319,19 +319,6 @@
 			{
 				"inputs": [
 					{
-						"internalType": "uint256",
-						"name": "tokenId",
-						"type": "uint256"
-					}
-				],
-				"name": "mint",
-				"outputs": [],
-				"stateMutability": "nonpayable",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
 						"internalType": "address",
 						"name": "to",
 						"type": "address"
@@ -745,7 +732,7 @@
 	},
 	"settings": {
 		"compilationTarget": {
-			"contracts/nfts/TestNFT.sol": "TestNFT"
+			"contracts/nfts/TestPoSNFT.sol": "TestPoSNFT"
 		},
 		"evmVersion": "london",
 		"libraries": {},
@@ -887,12 +874,12 @@
 				"dweb:/ipfs/QmUvLPqozjgPAD8AwwjbyYZv1TiVmvahJLuKJ9Q43HdqFs"
 			]
 		},
-		"contracts/nfts/TestNFT.sol": {
-			"keccak256": "0x4b2693f549fd2e3430c00cd0848c0cff2725ba840efa776890950e5dcf43c6f6",
+		"contracts/nfts/TestPoSNFT.sol": {
+			"keccak256": "0xb02ad3af99f0d36e23dca141e648173e6e44a2b63956ca807b13acb9478f1738",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://fe581fe861fcffa56625fb68af41acbb09b2044ab47c09f8f15a1422901855b4",
-				"dweb:/ipfs/QmP5wcHZbw4sbN4cNihKkrKCh7jbWCdcgxT9ivhHqiCy6b"
+				"bzz-raw://188377395a70c2c243f573aabcc48b9f9b323904878e7bfefa0d7a71c54c2783",
+				"dweb:/ipfs/QmUhVy5XPEmLgxPSJ8Ee4vpZKNNNgPqg2nTm1iBQEZD6pG"
 			]
 		}
 	},
