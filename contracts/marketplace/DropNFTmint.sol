@@ -4,7 +4,6 @@ pragma solidity ^0.8.0;
 import "@openzeppelin/contracts/access/Ownable.sol";
 import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 import "@openzeppelin/contracts/token/ERC20/utils/SafeERC20.sol";
-import "@openzeppelin/contracts/token/ERC721/IERC721.sol";
 import "@openzeppelin/contracts/utils/Arrays.sol";
 
 import "../cryptography/EIP712.sol";
@@ -31,7 +30,7 @@ contract DropNFTmint is Ownable, EIP712
     constructor(bytes32 salt) EIP712("DropNFTmint", "1.0", salt)
     { }
     
-    function initialize(address _posnft_address, uint _quantity_limit, uint[] calldata _supply, address _erc20_address, uint[] calldata _price, uint[] calldata _end_epoch) external onlyOwner
+    function initialize(address _posnft_address, uint _quantity_limit, uint[] calldata _supply, address _erc20_address, uint[] calldata _price, uint[] calldata _end_epoch) public onlyOwner
     {
         require(supply.length == 0 && _supply.length > 0 && _supply.length == _price.length &&  _supply.length == _end_epoch.length, "invalid arguments");
         posnft_address = _posnft_address;

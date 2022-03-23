@@ -19,6 +19,12 @@
 						"internalType": "bytes32",
 						"name": "_salt",
 						"type": "bytes32"
+					},
+					{
+						"indexed": false,
+						"internalType": "string",
+						"name": "_type",
+						"type": "string"
 					}
 				],
 				"name": "DropCreated",
@@ -38,6 +44,30 @@
 					}
 				],
 				"name": "createDropNFTmint",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "bytes32",
+						"name": "salt",
+						"type": "bytes32"
+					},
+					{
+						"internalType": "address",
+						"name": "new_owner",
+						"type": "address"
+					}
+				],
+				"name": "createDropNFTtransfer",
 				"outputs": [
 					{
 						"internalType": "address",
@@ -70,7 +100,7 @@
 			"bytecodeHash": "ipfs"
 		},
 		"optimizer": {
-			"enabled": false,
+			"enabled": true,
 			"runs": 200
 		},
 		"remappings": []
@@ -106,6 +136,22 @@
 			"urls": [
 				"bzz-raw://a439187f7126d31add4557f82d8aed6be0162007cd7182c48fd934dbab8f3849",
 				"dweb:/ipfs/QmRPLguRFvrRJS7r6F1bcLvsx6q1VrgjEpZafyeL8D7xZh"
+			]
+		},
+		"@openzeppelin/contracts/token/ERC721/IERC721Receiver.sol": {
+			"keccak256": "0xd5fa74b4fb323776fa4a8158800fec9d5ac0fec0d6dd046dd93798632ada265f",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://33017a30a99cc5411a9e376622c31fc4a55cfc6a335e2f57f00cbf24a817ff3f",
+				"dweb:/ipfs/QmWNQtWTPhA7Lo8nbxbc8KFMvZwbFYB8fSeEQ3vuapSV4a"
+			]
+		},
+		"@openzeppelin/contracts/token/ERC721/utils/ERC721Holder.sol": {
+			"keccak256": "0x0108bf6a6ebd5f96678bed33a35947537263f96766131ee91461fb6485805028",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://ae2d274bf3d56a6d49a9bbd0a4871c54997a82551eb3eb1c0c39dc98698ff8bf",
+				"dweb:/ipfs/QmTT7ty5DPGAmRnx94Xu3TUDYGSPDVLN2bppJAjjedrg1e"
 			]
 		},
 		"@openzeppelin/contracts/utils/Address.sol": {
@@ -173,19 +219,27 @@
 			]
 		},
 		"contracts/marketplace/DropNFTFactory.sol": {
-			"keccak256": "0x6d60e7e074aef49c9c6173969f857a3f39150fbde4d94542051546ecdf60269f",
+			"keccak256": "0x0d6c43c935810d4f2998f780b8467e40ee8acbfbe6424f508a6e2f5d415f30cd",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://e6337ce010dd2f10c989bcc6c2d7ec5ef0bfa4f2c1303ed29d1d4cedfd39ccef",
-				"dweb:/ipfs/Qme1siKUxnS2kZR7jmvCKLWDeA4ivEJnZCpkiSWePAAhGa"
+				"bzz-raw://0a28852a902c18c080a866663df7581cdf92b3c730dbb0a55b0d43520ccb6d20",
+				"dweb:/ipfs/QmQz47ESsG6gY4nzVM11ShJzTRi4Z9153AcKWNd77zhV4V"
 			]
 		},
 		"contracts/marketplace/DropNFTmint.sol": {
-			"keccak256": "0x9152dd976ef3c1862b7c8d377c182dcdcee23af808f27dc9e33f93da3a52d1f0",
+			"keccak256": "0x54e77249289d262e4d1b09194ba83d22b485efda33a88633fc492005cc900269",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://beb403fa33b8592bf1dca0ad9cfba9a57f774fb158ac1b872eefffc5b25e9b6b",
-				"dweb:/ipfs/QmdYVEn34kZcuycqpFTMp7iYBcsCrYQmU9FcXjYybzZfAh"
+				"bzz-raw://83e586cee75a8c037dc99342cad49d49defeae5dc2c91528a821bcc617d616df",
+				"dweb:/ipfs/QmNxjxS2wWhUmsiFeZiSU8Xk1g8LrDRNtS4T1rRQ5dPLrJ"
+			]
+		},
+		"contracts/marketplace/DropNFTtransfer.sol": {
+			"keccak256": "0x526cdc3f8599ebd88dd5347c36a7363749eb86684cb954585aae3e8c897d6d1f",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://b717cdaf5678511e31a376d318050c9449b96e16577457e7aa92cca9e4702e89",
+				"dweb:/ipfs/QmaiC3ZceZHQvGpAHaTd7bKh3aX9tg5gGr4WL3S9P6qYYk"
 			]
 		},
 		"contracts/nfts/IPoSNFT.sol": {

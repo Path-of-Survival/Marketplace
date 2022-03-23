@@ -36,7 +36,7 @@ contract DropNFTtransfer is Ownable, EIP712, ERC721Holder
     constructor(bytes32 salt) EIP712("DropNFTtransfer", "1.0", salt)
     { }
     
-    function initialize(uint _quantity_limit, uint[] calldata _supply, address _erc20_address, uint[] calldata _price, uint[] calldata _end_epoch) external onlyOwner
+    function initialize(uint _quantity_limit, uint[] calldata _supply, address _erc20_address, uint[] calldata _price, uint[] calldata _end_epoch) public onlyOwner
     {
         require(supply.length == 0 && _supply.length > 0 && _supply.length == _price.length &&  _supply.length == _end_epoch.length, "invalid arguments");
         quantity_limit = _quantity_limit;
@@ -138,6 +138,19 @@ contract DropNFTtransfer is Ownable, EIP712, ERC721Holder
                 supply[i] = 0;             
             }
         }
+    }
+
+    function returnNFTs(address to, uint quantity) public onlyOwner
+    {
+        require(end_epoch.length > 0 && block.timestamp > end_epoch[end_epoch.length - 1], "active drop");
+        require(next_nft_index + quantity <= initial_total_supply, "invalid quantity");
+        for(uint i = 0; i < quantity; i++)
+        {
+            IERC721 nft = IERC721(erc721_addresses[next_nft_index]);
+            nft.safeTransferFrom(address(this), to, token_ids[next_nft_index]);
+            next_nft_index++;
+        }
+        decreaseSupply(quantity);
     }
 
     function addAdmin(address admin) external onlyOwner
