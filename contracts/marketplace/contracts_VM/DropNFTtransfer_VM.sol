@@ -17,7 +17,7 @@ contract DropNFTtransfer is Ownable, EIP712, ERC721Holder
 
     mapping (address => bool) public admins;
     mapping (address => uint) sales_counter;
-    bytes32 constant BUY_POSNFT_TYPE_HASH = 0xa8d1a88a06141ebe0d1a62d28bf4afc58b965a89994e6a9ac38392c342f4cf9c;
+    bytes32 constant BUY_NFT_TYPE_HASH = 0xa8d1a88a06141ebe0d1a62d28bf4afc58b965a89994e6a9ac38392c342f4cf9c;
 
     address[] public erc721_addresses;
     uint[] public token_ids;
@@ -72,7 +72,7 @@ contract DropNFTtransfer is Ownable, EIP712, ERC721Holder
         uint stage = Arrays.findUpperBound(end_epoch, curr_epoch);
         uint rem_supply = getSupply(stage);
         require(rem_supply >= quantity && sales_counter[_msgSender()] + quantity <= quantity_limit, "sold out");
-        bytes32 data_hash = keccak256(abi.encode(BUY_POSNFT_TYPE_HASH, quantity, _msgSender()));
+        bytes32 data_hash = keccak256(abi.encode(BUY_NFT_TYPE_HASH, quantity, _msgSender()));
         require(admins[EIP712.verify(data_hash, signature)] == true, "invalid signature");
         uint total_amount = quantity*price[stage];
         if(erc20_address == address(0))
