@@ -100,7 +100,7 @@
 			"bytecodeHash": "ipfs"
 		},
 		"optimizer": {
-			"enabled": true,
+			"enabled": false,
 			"runs": 200
 		},
 		"remappings": []
@@ -227,27 +227,19 @@
 			]
 		},
 		"contracts/marketplace/DropNFTmint.sol": {
-			"keccak256": "0x54e77249289d262e4d1b09194ba83d22b485efda33a88633fc492005cc900269",
+			"keccak256": "0xbbe497fd11b77dac9e54dea6e01211277c2524826aaa1f4d157550105bf0ee11",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://83e586cee75a8c037dc99342cad49d49defeae5dc2c91528a821bcc617d616df",
-				"dweb:/ipfs/QmNxjxS2wWhUmsiFeZiSU8Xk1g8LrDRNtS4T1rRQ5dPLrJ"
+				"bzz-raw://ecb127ba750d90f02aef6641d936c28078c21c5075a0e7844ec47f5a076d1db4",
+				"dweb:/ipfs/QmSqvfPNthWFiSTsRqTq3Ezf24ybLW45NkbTQB6DQhGim6"
 			]
 		},
 		"contracts/marketplace/DropNFTtransfer.sol": {
-			"keccak256": "0x526cdc3f8599ebd88dd5347c36a7363749eb86684cb954585aae3e8c897d6d1f",
+			"keccak256": "0xc898f70b198b445195fcecf8fddd29ce6573f7c5ea02cc54ca28016266f570f4",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://b717cdaf5678511e31a376d318050c9449b96e16577457e7aa92cca9e4702e89",
-				"dweb:/ipfs/QmaiC3ZceZHQvGpAHaTd7bKh3aX9tg5gGr4WL3S9P6qYYk"
-			]
-		},
-		"contracts/nfts/IPoSNFT.sol": {
-			"keccak256": "0x2ff48feadcfbdb5b03eedd40abd8b0fa472a398e0bde4181450289019f101132",
-			"license": "MIT",
-			"urls": [
-				"bzz-raw://923da283327dc40a93b3437f66898db71b441bea6fcf414b8a0c8a49345bc0ac",
-				"dweb:/ipfs/QmSFLK4yJAEobPRJcAE59TCydFpDqNXow9KYwsUbrPh2Y8"
+				"bzz-raw://bb3f943cbdaa26ec6979f831c8cd7deb1d70c236f20ce538acd8d9145aa7d980",
+				"dweb:/ipfs/QmZvrYVFiFXGbhHcS1QjDQwX7bmjn52ScVkkAAg3D4DaGX"
 			]
 		}
 	},

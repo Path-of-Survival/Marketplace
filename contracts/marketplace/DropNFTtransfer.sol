@@ -9,34 +9,33 @@ import "@openzeppelin/contracts/token/ERC721/utils/ERC721Holder.sol";
 import "@openzeppelin/contracts/utils/Arrays.sol";
 
 import "../cryptography/EIP712.sol";
-import "../nfts/IPoSNFT.sol";
 
 contract DropNFTtransfer is Ownable, EIP712, ERC721Holder
 {
     using SafeERC20 for IERC20;
 
     mapping (address => bool) public admins;
-    mapping (address => uint) sales_counter;
+    mapping (address => uint)[] sales_counter;
     bytes32 constant BUY_NFT_TYPE_HASH = 0xa8d1a88a06141ebe0d1a62d28bf4afc58b965a89994e6a9ac38392c342f4cf9c;
 
     address[] public erc721_addresses;
     uint[] public token_ids;
-    uint quantity_limit;
+    uint[] quantity_limit;
     uint[] supply;
     address erc20_address;
     uint[] price;
     uint[] end_epoch;
-    uint next_nft_index = 0;
-    uint initial_total_supply;
+    uint public next_nft_index = 0;
+    uint public initial_total_supply;
 
-    event Initialized(uint _quantity_limit, uint[] _supply, address _erc20_address, uint[] _price, uint[] _end_epoch);
-    event Sold(address _buyer, uint _quantity);
+    event Initialized(uint[] _quantity_limit, uint[] _supply, address _erc20_address, uint[] _price, uint[] _end_epoch);
+    event Sold(address indexed _buyer, uint _quantity);
     event NFTsAdded(address[] _erc721_addresses, uint[] _token_ids);
 
     constructor(bytes32 salt) EIP712("DropNFTtransfer", "1.0", salt)
     { }
     
-    function initialize(uint _quantity_limit, uint[] calldata _supply, address _erc20_address, uint[] calldata _price, uint[] calldata _end_epoch) public onlyOwner
+    function initialize(uint[] calldata _quantity_limit, uint[] calldata _supply, address _erc20_address, uint[] calldata _price, uint[] calldata _end_epoch) public onlyOwner
     {
         require(supply.length == 0 && _supply.length > 0 && _supply.length == _price.length &&  _supply.length == _end_epoch.length, "invalid arguments");
         quantity_limit = _quantity_limit;
@@ -45,6 +44,10 @@ contract DropNFTtransfer is Ownable, EIP712, ERC721Holder
         price = _price;
         end_epoch = _end_epoch;
         initial_total_supply = getSupply(supply.length - 1);
+        for(uint i=0; i<_supply.length;i++)
+        {
+            sales_counter.push();
+        }
         emit Initialized(quantity_limit, supply, erc20_address, price, end_epoch);
     }
 
@@ -69,7 +72,7 @@ contract DropNFTtransfer is Ownable, EIP712, ERC721Holder
         require(quantity > 0, "invalid quantity");
         uint stage = Arrays.findUpperBound(end_epoch, block.timestamp);
         uint rem_supply = getSupply(stage);
-        require(rem_supply >= quantity && sales_counter[_msgSender()] + quantity <= quantity_limit, "sold out");
+        require(rem_supply >= quantity && sales_counter[stage][_msgSender()] + quantity <= quantity_limit[stage], "sold out");
         bytes32 data_hash = keccak256(abi.encode(BUY_NFT_TYPE_HASH, quantity, _msgSender()));
         require(admins[EIP712.verify(data_hash, signature)] == true, "invalid signature");
         uint total_amount = quantity*price[stage];
@@ -91,14 +94,17 @@ contract DropNFTtransfer is Ownable, EIP712, ERC721Holder
             next_nft_index++;
         }
         decreaseSupply(quantity);
-        sales_counter[_msgSender()] += quantity;
+        sales_counter[stage][_msgSender()] += quantity;
         emit Sold(_msgSender(), quantity);
     }
 
     function purchaseQuantityLimit(address buyer) public view returns(uint)
     {
-        uint rem_supply = remainingSupply();
-        uint rem_buyer_limit = quantity_limit - sales_counter[buyer];
+        uint stage = Arrays.findUpperBound(end_epoch, block.timestamp);
+        if(stage >= supply.length)
+            return 0;
+        uint rem_supply = getSupply(stage);
+        uint rem_buyer_limit = quantity_limit[stage] - sales_counter[stage][buyer];
         return rem_buyer_limit <= rem_supply ? rem_buyer_limit : rem_supply;
     }
 

@@ -27,9 +27,9 @@
 					},
 					{
 						"indexed": false,
-						"internalType": "uint256",
+						"internalType": "uint256[]",
 						"name": "_quantity_limit",
-						"type": "uint256"
+						"type": "uint256[]"
 					},
 					{
 						"indexed": false,
@@ -82,7 +82,7 @@
 				"anonymous": false,
 				"inputs": [
 					{
-						"indexed": false,
+						"indexed": true,
 						"internalType": "address",
 						"name": "_buyer",
 						"type": "address"
@@ -155,9 +155,9 @@
 						"type": "address"
 					},
 					{
-						"internalType": "uint256",
+						"internalType": "uint256[]",
 						"name": "_quantity_limit",
-						"type": "uint256"
+						"type": "uint256[]"
 					},
 					{
 						"internalType": "uint256[]",
@@ -300,7 +300,7 @@
 	},
 	"settings": {
 		"compilationTarget": {
-			"contracts/marketplace/contracts_VM/DropNFTmint_VM.sol": "DropNFTmint"
+			"contracts/marketplace/contracts_debug/DropNFTmint_debug.sol": "DropNFTmint_debug"
 		},
 		"evmVersion": "london",
 		"libraries": {},
@@ -308,7 +308,7 @@
 			"bytecodeHash": "ipfs"
 		},
 		"optimizer": {
-			"enabled": true,
+			"enabled": false,
 			"runs": 200
 		},
 		"remappings": []
@@ -394,20 +394,12 @@
 				"dweb:/ipfs/QmdykcuGusuwqthVzZ2RdiGRf3GWvinP5ErrWC3qAJK9re"
 			]
 		},
-		"contracts/marketplace/contracts_VM/DropNFTmint_VM.sol": {
-			"keccak256": "0x0875a43435c77f156700621f303eb550333d52562337b291786023c31151b11c",
+		"contracts/marketplace/contracts_debug/DropNFTmint_debug.sol": {
+			"keccak256": "0x079d94661a676bd311872b2e3c09737c2ec0c035493d40a0a3466ef811560bf8",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://8925bd324785e7a5a0abad83caf15f4ffa1868bf97eaa9252dee8b8b3eb0a91e",
-				"dweb:/ipfs/Qma8JYuzW7gbBenwDuiCDnKQSmnCfegR5QHridZu3xHkCS"
-			]
-		},
-		"contracts/nfts/IPoSNFT.sol": {
-			"keccak256": "0x2ff48feadcfbdb5b03eedd40abd8b0fa472a398e0bde4181450289019f101132",
-			"license": "MIT",
-			"urls": [
-				"bzz-raw://923da283327dc40a93b3437f66898db71b441bea6fcf414b8a0c8a49345bc0ac",
-				"dweb:/ipfs/QmSFLK4yJAEobPRJcAE59TCydFpDqNXow9KYwsUbrPh2Y8"
+				"bzz-raw://bf38abefae4b7701afdcfda1c3002a5fdee9d0a7d7643f7340d5ad2b0b76886e",
+				"dweb:/ipfs/QmUqqPApByTTNN1vMKRAj2sjAqRsGfYB6hYKwRd6YjKRJA"
 			]
 		}
 	},

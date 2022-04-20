@@ -5,17 +5,17 @@
         const account = (await web3.eth.getAccounts())[0];
         console.log("address", account)
 
-        const name = "DropNFT";
+        const name = "DropNFTmint";
         const version = "1.0";
         const chain_id = await web3.eth.getChainId();
-        const contract_address = "0x8AD6BB0732dc2EfcAe3cA19Af83B73CEf028a153";
+        const contract_address = "0xEfF72Fed74A864D315B2052b30Ae8cAbAdB650FD";
         const salt = "0xac4baafe11131670a8ae1bbc25bb1658c6b0ffeb6045ab012263071707c2bb68";
 
         const domain_separator = domainSeparator(name, version, chain_id, contract_address, salt); 
         
 //        console.log(domain_separator);
         const quantity = 2;
-        var typed_data = toTypedDataHash(domain_separator, buyNFTHash(quantity, "0xF1F6720d4515934328896D37D356627522D97B49"));
+        var typed_data = toTypedDataHash(domain_separator, buyNFTHash(quantity, "0xBb7403aAF82342A0d987A8603aAf881136B5D125"));
 //        console.log(typed_data);
         console.log(await web3.eth.sign(typed_data, account))
      

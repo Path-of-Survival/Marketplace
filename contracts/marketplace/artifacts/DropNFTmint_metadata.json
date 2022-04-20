@@ -27,9 +27,9 @@
 					},
 					{
 						"indexed": false,
-						"internalType": "uint256",
+						"internalType": "uint256[]",
 						"name": "_quantity_limit",
-						"type": "uint256"
+						"type": "uint256[]"
 					},
 					{
 						"indexed": false,
@@ -82,7 +82,7 @@
 				"anonymous": false,
 				"inputs": [
 					{
-						"indexed": false,
+						"indexed": true,
 						"internalType": "address",
 						"name": "_buyer",
 						"type": "address"
@@ -155,9 +155,9 @@
 						"type": "address"
 					},
 					{
-						"internalType": "uint256",
+						"internalType": "uint256[]",
 						"name": "_quantity_limit",
-						"type": "uint256"
+						"type": "uint256[]"
 					},
 					{
 						"internalType": "uint256[]",
@@ -295,7 +295,7 @@
 			"bytecodeHash": "ipfs"
 		},
 		"optimizer": {
-			"enabled": true,
+			"enabled": false,
 			"runs": 200
 		},
 		"remappings": []
@@ -382,19 +382,11 @@
 			]
 		},
 		"contracts/marketplace/DropNFTmint.sol": {
-			"keccak256": "0x06a3dd97bae3400cc606db4a4b58806768270e782bcacbbfb3876d1407048df6",
+			"keccak256": "0xbbe497fd11b77dac9e54dea6e01211277c2524826aaa1f4d157550105bf0ee11",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://dc5cd92f00c599ba27325674525c97528e1a427fc6a62d7bd96f6476aaf0f42a",
-				"dweb:/ipfs/Qmejnwx7j1sNLPfseHtraLyzHLoYadhDgE28RmRNfsd8AT"
-			]
-		},
-		"contracts/nfts/IPoSNFT.sol": {
-			"keccak256": "0x2ff48feadcfbdb5b03eedd40abd8b0fa472a398e0bde4181450289019f101132",
-			"license": "MIT",
-			"urls": [
-				"bzz-raw://923da283327dc40a93b3437f66898db71b441bea6fcf414b8a0c8a49345bc0ac",
-				"dweb:/ipfs/QmSFLK4yJAEobPRJcAE59TCydFpDqNXow9KYwsUbrPh2Y8"
+				"bzz-raw://ecb127ba750d90f02aef6641d936c28078c21c5075a0e7844ec47f5a076d1db4",
+				"dweb:/ipfs/QmSqvfPNthWFiSTsRqTq3Ezf24ybLW45NkbTQB6DQhGim6"
 			]
 		}
 	},
