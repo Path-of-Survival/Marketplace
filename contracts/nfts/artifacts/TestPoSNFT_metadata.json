@@ -1,6 +1,6 @@
 {
 	"compiler": {
-		"version": "0.8.13+commit.abaa5c0e"
+		"version": "0.8.14+commit.80d49f37"
 	},
 	"language": "Solidity",
 	"output": {
@@ -314,6 +314,13 @@
 					}
 				],
 				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "mint",
+				"outputs": [],
+				"stateMutability": "nonpayable",
 				"type": "function"
 			},
 			{
@@ -851,11 +858,11 @@
 			]
 		},
 		"contracts/cryptography/EIP712.sol": {
-			"keccak256": "0xb4d7d678ca71c0cfdeb09d32f3a49ad5cd87973391235e5e820f94e83b63df3f",
+			"keccak256": "0x2d891fc1c707ee928d783662be386b45faf0dd2914bb223a1d701b0dadd4e257",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://36b9c78c95fddd026cd3eb0f4f123ee40f9f9e2a6ac84dc4b13ca0927ba391db",
-				"dweb:/ipfs/QmdykcuGusuwqthVzZ2RdiGRf3GWvinP5ErrWC3qAJK9re"
+				"bzz-raw://de5226b2538644a5a7264aaacdc15f2fc8e2e827808cedd6f48f4c5044e9a4b5",
+				"dweb:/ipfs/QmcLnndRjwG3aw5vmugJ5sJRYAWsX1c9HhacDCfGHKBd8i"
 			]
 		},
 		"contracts/nfts/IPoSNFT.sol": {
@@ -867,19 +874,19 @@
 			]
 		},
 		"contracts/nfts/PoSNFT.sol": {
-			"keccak256": "0xddb620f133a34a100d15dcb2c1544e2a6a001b3979f4ce5db58a5d8c756fe385",
+			"keccak256": "0xd71db2ec062820297974bb202a12d7c0a7b77d2167f1d0b4068f84677455c70e",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://fae930b2799695b17f48bdb256b61d763e0d809117fafca4d213e27fb0043567",
-				"dweb:/ipfs/QmUvLPqozjgPAD8AwwjbyYZv1TiVmvahJLuKJ9Q43HdqFs"
+				"bzz-raw://0e60854cd221a3c3894a0a2799597da88494d7335e447114d07844ee54a64254",
+				"dweb:/ipfs/QmSXgQeR5N5bi7EULEEi4w2E1nLN9MeJmYWE69kryaAn4z"
 			]
 		},
 		"contracts/nfts/TestPoSNFT.sol": {
-			"keccak256": "0xb02ad3af99f0d36e23dca141e648173e6e44a2b63956ca807b13acb9478f1738",
+			"keccak256": "0x77a764d2b93c285cd3ff2a71db05be05cd171e68333bcfe18416c1abae8861fc",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://188377395a70c2c243f573aabcc48b9f9b323904878e7bfefa0d7a71c54c2783",
-				"dweb:/ipfs/QmUhVy5XPEmLgxPSJ8Ee4vpZKNNNgPqg2nTm1iBQEZD6pG"
+				"bzz-raw://d3f4dd9fedcf551ee49a7e0e349d0fec06e07eada94152d135fc138fba55c1a1",
+				"dweb:/ipfs/QmWfmhazVR8GNmiPSjg6RuNszDRkevNaiVR5NKK35Khun6"
 			]
 		}
 	},

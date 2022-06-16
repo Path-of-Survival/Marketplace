@@ -37,7 +37,7 @@ contract PoSNFT is ERC721Enumerable, EIP712, Ownable, IPoSNFT
     function mintWithHash(uint tokenId, uint withdrawId, bytes memory signature) external override
     {
         require(tokenId >= FIRST_GAME_TOKEN_ID, "invalid tokenId");
-        require(withdraw_ids[withdrawId] == false && admins[EIP712.verify(generateMintHash(_msgSender(), tokenId, withdrawId), signature)] == true, "invalid signature");
+        require(withdraw_ids[withdrawId] == false && admins[EIP712.recoverSigner(generateMintHash(_msgSender(), tokenId, withdrawId), signature)] == true, "invalid signature");
         _mint(_msgSender(), tokenId);
         withdraw_ids[withdrawId] = true;
         emit NFTWithdrawn(_msgSender(), tokenId, withdrawId);
@@ -45,7 +45,7 @@ contract PoSNFT is ERC721Enumerable, EIP712, Ownable, IPoSNFT
 
     function cancelMintHash(uint tokenId, uint withdrawId, bytes memory signature) external override
     {
-        require(withdraw_ids[withdrawId] == false && admins[EIP712.verify(generateMintHash(_msgSender(), tokenId, withdrawId), signature)] == true, "invalid signature");
+        require(withdraw_ids[withdrawId] == false && admins[EIP712.recoverSigner(generateMintHash(_msgSender(), tokenId, withdrawId), signature)] == true, "invalid signature");
         withdraw_ids[withdrawId] = true;
         emit WithdrawRequestCancelled(withdrawId);
     }

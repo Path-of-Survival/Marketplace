@@ -58,7 +58,7 @@ contract EIP712 {
         }
     }
 
-    function verify(bytes32 struct_hash, bytes memory signature) internal view returns(address)
+    function recoverSigner(bytes32 struct_hash, bytes memory signature) internal view returns(address)
     {
         return ECDSA.recover(_hashTypedDataV4(struct_hash), signature);
     }

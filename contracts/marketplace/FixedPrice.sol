@@ -34,9 +34,9 @@ contract FixedPrice is Ownable, ERC721Holder
     
     constructor() 
     { 
-        accepted_tokens[0x90a9C8637bf2Ac84E62d5173DAC6253C2b31Afe7] = true;
-        accepted_nfts[0x951428F1548377B32d080aCBf40756E05c174eda] = true;
-        accepted_nfts[0x9f4d712227B8fC41568fB3b16EDAFfAA0A30E3af] = true;
+        accepted_tokens[0xE6c471121b974dce211b65eF41E7E17D53Be879d] = true;
+        accepted_nfts[0x91a86cF18559212B48466DDd8F567a2b73E7a8aF] = true;
+        accepted_nfts[0x4dA3476F23367f302903736f81a9A28549E6d35c] = true;
     }
     
     function sellNFTForETH(address erc721_address, uint token_id, uint price) external

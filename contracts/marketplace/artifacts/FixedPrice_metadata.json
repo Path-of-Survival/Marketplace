@@ -1,6 +1,6 @@
 {
 	"compiler": {
-		"version": "0.8.13+commit.abaa5c0e"
+		"version": "0.8.14+commit.80d49f37"
 	},
 	"language": "Solidity",
 	"output": {
@@ -585,11 +585,11 @@
 			]
 		},
 		"contracts/marketplace/FixedPrice.sol": {
-			"keccak256": "0x9bf273194092d36b0673890a713396bbc95b8f3b97b8fa279286bcc3d69005b7",
+			"keccak256": "0x3d4b1fe707a4771e40ec9b2190165349636dcf97299bff0d7015f1095235710b",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://2eebf27649b1a091bc424dc6e60b35bdf6e82182486458ccc9e44b75efbf0cc0",
-				"dweb:/ipfs/Qma3XSHcx7wJF7CE6Q6MRiYfi3Ck3XQhiYNWogrkAqpKPZ"
+				"bzz-raw://a72b92454a881e73fe6a53e1ad04ebeb16204ba8c42a98c04d03fd6f18620767",
+				"dweb:/ipfs/QmYvugzsHWMiwdLxg17DJAj9iTayQjm7gY4K5K18Y4q9eG"
 			]
 		}
 	},

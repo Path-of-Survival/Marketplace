@@ -74,7 +74,7 @@ contract DropNFTtransfer is Ownable, EIP712, ERC721Holder
         uint rem_supply = getSupply(stage);
         require(rem_supply >= quantity && sales_counter[stage][_msgSender()] + quantity <= quantity_limit[stage], "sold out");
         bytes32 data_hash = keccak256(abi.encode(BUY_NFT_TYPE_HASH, quantity, _msgSender()));
-        require(admins[EIP712.verify(data_hash, signature)] == true, "invalid signature");
+        require(admins[EIP712.recoverSigner(data_hash, signature)] == true, "invalid signature");
         uint total_amount = quantity*price[stage];
         if(erc20_address == address(0))
         {

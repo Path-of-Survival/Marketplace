@@ -1,6 +1,6 @@
 {
 	"compiler": {
-		"version": "0.8.13+commit.abaa5c0e"
+		"version": "0.8.14+commit.80d49f37"
 	},
 	"language": "Solidity",
 	"output": {
@@ -343,11 +343,11 @@
 	},
 	"sources": {
 		"@openzeppelin/contracts/token/ERC20/ERC20.sol": {
-			"keccak256": "0xdadd41acb749920eccf40aeaa8d291adf9751399a7343561bad13e7a8d99be0b",
+			"keccak256": "0xe0c8b625a79bac0fe80f17cfb521e072805cc9cef1c96a5caf45b264e74812fa",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://12af4ac016f9fdf3be5d15824f4292272aa11f6b2e0192a0f7320f5ad49bbbf0",
-				"dweb:/ipfs/QmRXMpdqCgA3TYuYxBodqs5p9jGbnMW6xa2gvjppvq4TWk"
+				"bzz-raw://12fd1efc9ad061ef675bd50fb0c8e3c6f2952a09f8df0e3c688b8d81b8918838",
+				"dweb:/ipfs/QmawN6PjTwy91pU7ANjCSgbsLc8TDA6hwu9GsFFaNSuhb5"
 			]
 		},
 		"@openzeppelin/contracts/token/ERC20/IERC20.sol": {
