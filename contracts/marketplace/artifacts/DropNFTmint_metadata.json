@@ -1,6 +1,6 @@
 {
 	"compiler": {
-		"version": "0.8.14+commit.80d49f37"
+		"version": "0.8.15+commit.e14f2714"
 	},
 	"language": "Solidity",
 	"output": {
@@ -382,11 +382,11 @@
 			]
 		},
 		"contracts/marketplace/DropNFTmint.sol": {
-			"keccak256": "0x9c8b4c6b95701afa55f29da7f7d528752674ae49ee6da47b169ad45328b425df",
+			"keccak256": "0x94fdc44b04c1b2f22763d590a8a4b75be139474f4553880cb964e06f4fd12baf",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://99fd549ac4ec6f20848f0bdb1fab00fd3474d04e25d1317268559339988a73b1",
-				"dweb:/ipfs/QmNZ7mCMtzZ8q3DTQgWjrigdkFQNE8rhYsovFgmqyg4ui8"
+				"bzz-raw://5c60b87e2f16b8f03a72f0f2ff9720cc33c6fe979da73fbde05e81be702730f9",
+				"dweb:/ipfs/QmWWNC5tGDmvgTFgtZ7i3cPLLtpGEmudByhheXuUBjUi87"
 			]
 		}
 	},

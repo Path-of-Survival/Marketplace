@@ -67,9 +67,7 @@ contract DropNFTmint_debug is Ownable, EIP712
         }
         else
         {
-            IERC20 token = IERC20(erc20_address);
-            require(token.allowance(_msgSender(), address(this)) >= total_amount, "insufficient allowance");
-            token.safeTransferFrom(_msgSender(), owner(), total_amount);
+            IERC20(erc20_address).safeTransferFrom(_msgSender(), owner(), total_amount);
         }
         IPoSNFT pos_nft = IPoSNFT(posnft_address);
         for(uint i=0; i<quantity; i++)

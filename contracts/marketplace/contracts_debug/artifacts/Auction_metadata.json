@@ -1,6 +1,6 @@
 {
 	"compiler": {
-		"version": "0.8.14+commit.80d49f37"
+		"version": "0.8.15+commit.e14f2714"
 	},
 	"language": "Solidity",
 	"output": {
@@ -714,11 +714,11 @@
 			]
 		},
 		"contracts/marketplace/contracts_debug/Auction_debug.sol": {
-			"keccak256": "0xd4a0cf532cc8385709750766ee95ae2169c6f2b00530de6b0c49ff991bac3085",
+			"keccak256": "0xc7a9223dd8e40d741f3d711b4c12530f84bb7ff49047011d6fc941f85af12752",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://3ad3a761c4c6403cc162b412b2aae4909565122505a0f3ab69328de50cfce5fc",
-				"dweb:/ipfs/QmQsXapdXjycLGNo9mw3M3PxpZSB3V8fNmjFKiCKegDkUp"
+				"bzz-raw://e49e3411d36970bd5c8205ce293507ad132f965bb295403387860c4e4e3ae298",
+				"dweb:/ipfs/QmQq92ixv4duozRMJcW7VWLRmDejhk2dz2XpXXvxsjreeb"
 			]
 		}
 	},

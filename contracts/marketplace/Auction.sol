@@ -104,7 +104,7 @@ contract Auction is Ownable, ERC721Holder
         IERC20 token = IERC20(items[item_index].erc20_address);
         token.safeTransferFrom(_msgSender(), address(this), amount);
         if(items[item_index].last_price > 0)
-            token.transfer(items[item_index].last_bidder, items[item_index].last_price);
+            token.safeTransfer(items[item_index].last_bidder, items[item_index].last_price);
         items[item_index].last_price = amount;
         items[item_index].last_bidder = _msgSender();
         if(block.timestamp + extend_time > items[item_index].end_epoch)
@@ -130,8 +130,8 @@ contract Auction is Ownable, ERC721Holder
         else
         {
             IERC20 token = IERC20(items[item_index].erc20_address);
-            token.transfer(owner(), fee);
-            token.transfer(items[item_index].owner, items[item_index].last_price - fee);
+            token.safeTransfer(owner(), fee);
+            token.safeTransfer(items[item_index].owner, items[item_index].last_price - fee);
         }
         emit Finished(item_id);
         _removeItem(item_id, item_index);
